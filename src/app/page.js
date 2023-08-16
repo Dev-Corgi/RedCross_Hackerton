@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
         <div>
-          안녕
+          안녕dkk
         </div>
       
           </main>
