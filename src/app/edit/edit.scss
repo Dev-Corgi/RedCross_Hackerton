@@ -1,0 +1,87 @@
+.edit {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    //뒷배경 스크롤 없게 하려구
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .left {
+        background-image: url('/background.png');
+        background-size: cover;
+        height: 100vh;
+        width: 50%;
+
+        .selection{
+            display: flex;
+            padding: 27px 12%;
+            gap:10px;
+
+            button{
+                background-color: rgba(0,0,0,0);
+                border:0;
+                color:#fff;
+                padding:4px;
+                font-size:19px;
+                opacity: 0.8;
+                padding-bottom:8px;
+            }
+            .selected{
+                padding-bottom:4px;
+                border-bottom: 4px solid #fff;
+                opacity: 1;
+            }
+
+        }
+
+        .panel{
+            width: 80%;
+            height: 78%;
+            margin: 47px 8% 0 12%;
+            background-color: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            color:#fff;
+
+            p {
+                width: 100%;
+                padding: 39px 5% 0 5%;
+            }
+        }
+    }
+
+    .right {
+        height: 100vh;
+        width: 50%;
+
+        .panel{
+            width: 90%;
+            padding:126px 5% 0 5%;
+
+            .header{
+                color:#80868B;
+            h1{
+                margin:24px 0 5px 0;
+                font-size: 42px;
+                font-family: boutiqueGothic;
+                font-weight: 600;
+            }
+            p{
+                font-size: larger;
+                font-weight: 500;
+            }
+            }
+
+            textarea{
+                width: 100%;
+                margin:24px 0;
+                resize:none;
+                outline: none;
+            }
+
+        }
+        
+
+    }
+}
