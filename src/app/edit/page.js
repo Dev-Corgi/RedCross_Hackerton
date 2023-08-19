@@ -1,6 +1,7 @@
 'use client'
 import './edit.scss';
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
 
 function Edit(){
@@ -13,25 +14,41 @@ function Edit(){
     },[]);
 
     //네브바 이동
-    let [selected, setSelected] = useState(0);
+    let [selection, setSelection] = useState(['selected', '', '']);
+
     
-    
+    //요약본, 인터뷰 텍스트
+    let [panelText, setPanelText] = useState('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.')
+
+    let audioRef = useRef(null);
+    useEffect(()=>{
+
+    },[])
     
     return(
         <div className="edit">
             <div className='left'>
                 <div className='selection'>
-                    <button className="selected">요약본</button>
-                    <button>오디오</button>
-                    <button>인터뷰</button>
+                    <button className={selection[0]} onClick={()=>{ setSelection(['selected', '', '']) }}>요약본</button>
+                    <button className={selection[1]} onClick={()=>{ setSelection(['', 'selected', '']) }}>오디오</button>
+                    <button className={selection[2]} onClick={()=>{ setSelection(['', '', 'selected']) }}>인터뷰</button>
                 </div>
 
-                <div className='panel'>
-                    <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
+                {
+                    selection[1] !== 'selected' ? 
+                    <div className='panel'>
+                        <p>{panelText}</p>
+                    </div> 
+                : <div>
+                    <Image src='/playButton.jpg' alt='일시정지' className="rounded-full" width={'44'} height={'44'} onClick={()=>{
+                        audioRef.current.play();
+                    }}/>
+                    <hr className='progressbar'></hr>
+
+                    <audio ref={audioRef} src="/audiofile1.mp3" controls></audio>
                 </div>
+                }
+                
             </div>
             <div className='right'>
                 <div className='panel'>
