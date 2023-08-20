@@ -49,6 +49,53 @@
                 padding: 39px 5% 0 5%;
             }
         }
+
+
+        .audio{
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            width: 80%;
+            margin:75% 10% 0 10%;
+            height:25%;
+
+            .header{
+                color:white;
+                display: flex;
+                gap:20px;
+                align-items: center;
+
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    h4{
+                        color:rgba(#fff, 0.6);
+                    }
+                }
+            }
+
+            .time{
+                display: flex;
+                justify-content: space-between;
+                color:#fff;
+            }
+
+            .progressbar{
+                height:6px;
+            width:100%;
+            background-color: rgba(#fff, 0.5);
+            border-radius: 2px;
+            color:#fff;
+            }
+            
+            .current-progressbar{
+                height:6px;
+                width: 50%;
+                background-color: #fff;
+                border-radius: 2px;
+            }
+        }
     }
 
     .right {
@@ -80,12 +127,8 @@
                 outline: none;
             }
 
-            .progressbar{
-                width:100%;
-                background-color: rgba(#fff, 0.5);
-                border:6px solid white;
-                color:#fff;
-            }
+
+            
         }
         
 

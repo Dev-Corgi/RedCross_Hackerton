@@ -56,7 +56,7 @@ body {
   font-family: 'boutiqueGothic';
   font-weight: 700;
   font-style: bold;
-  src: url('/fonts/boutiqueGothic-bold.ttf') format('ttf');
+  src: url('/fonts/boutiqueGothic_bold.ttf') format('ttf');
 }
 @font-face {
   font-family: 'boutiqueGothic';
@@ -81,5 +81,5 @@ body{
   width: 100%;
   height: 100%;
   margin:0;
-  font-family: Pretandard, intelone, boutiqueGothic, boutiqueMyeongjo;
+  font-family: Pretandard, intelone, boutiqueGothic, 'boutiqueMyeongjo';
 }
