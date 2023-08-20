@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Intro from './Working_intro';
 import ControllerSetConfig from '@/Controller/ControllerSetConfig';
+import Login from '@/app/login/page';
 
 export default function HomePage() {
+  console.log("hi")
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function HomePage() {
 
   return (
     <>
-      {isLoading ? null : <Intro />} 
+      {isLoading ? null : <Login />} 
       <ControllerSetConfig />
     </>
   );

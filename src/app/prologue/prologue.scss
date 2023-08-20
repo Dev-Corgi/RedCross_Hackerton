@@ -1,0 +1,68 @@
+.prologue {
+    width: 100%;
+    height: 100vh;
+    background-image: url('/chapter-bcg.jpeg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @mixin rect($length) {
+        border: 1px solid rgba(#fff, 0.3);
+        width: $length;
+        height: $length;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .first-rect {
+        @include rect(460px);
+        margin-bottom:60px;
+    }
+
+    .second-rect {
+        @include rect(300px);
+    }
+
+    .third-rect {
+        @include rect(140px);
+        position: relative;
+    }
+
+
+    .textset{
+        position: absolute;
+        color:#fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top:0;
+        width: 550px;
+
+        p{
+            font-family: 'boutiqueGothic';
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+
+    a{
+        color:#fff;
+        position:fixed;
+        margin: 0 auto;
+        bottom:130px;
+        font-size: 17px;
+    }
+
+    h2{
+        color:#fff;
+        position:fixed;
+        bottom:45px;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+
+}
