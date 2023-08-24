@@ -4,8 +4,11 @@ import CorgiDiv from "@/Components/Div/CorgiDiv";
 import React, { useRef, useState, useEffect } from "react";
 import ButtonController from "@/Controller/ButtonController";
 import Link from "next/link";
+import Loading from "../loading";
 
 function Video() {
+
+  let [isLoading, setIsLoading] = useState(true);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -13,12 +16,15 @@ function Video() {
   let [buttonController, setButtonController] = useState(null);
 
   useEffect(() => {
+    setIsLoading(false);
     setButtonController(new ButtonController(500));
   }, [])
 
   return (
-
-    <div className="relative bg-black w-[100vw] h-[100vh]">
+    <>
+    {
+      isLoading ? <Loading /> :
+      <div className="relative bg-black w-[100vw] h-[100vh]">
       <video
         controls
         className="absolute h-[100vh] w-[100vw] overflow-hidden object-cover"
@@ -27,7 +33,6 @@ function Video() {
         type="video/mp4"
         ref={videoRef}
       />
-
       {
         buttonController != null &&
         <CorgiDiv isloading classname="absolute h-[100vh] w-[100vw] bg-black [backdrop-filter:blur(10px)] bg-opacity-[0.4]"
@@ -109,6 +114,8 @@ function Video() {
       </Link>
 
     </div>
+    }</>
+    
   );
 };
 
