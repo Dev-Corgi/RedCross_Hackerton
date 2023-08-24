@@ -71,7 +71,7 @@ const Chapters = () => {
           <div>
             {
               [...chapters].reverse().map((e, i) =>
-                <ChapterBackground index={e.index} imgSrc={e.imgSrc} scrollGuage={scrollGuage} />
+                <ChapterBackground key = {i} index={e.index} imgSrc={e.imgSrc} scrollGuage={scrollGuage} />
               )
             }
           </div>
@@ -111,7 +111,7 @@ const Chapters = () => {
           >
             {
               chapters.map((e, i)=>
-                <ChapterContent index={e.index} scrollGuage={scrollGuage} title={e.title} content1={e.content1} content2={e.content2} />
+                <ChapterContent key = {i} index={e.index} scrollGuage={scrollGuage} title={e.title} content1={e.content1} content2={e.content2} />
               )
             }
           </CorgiDiv>

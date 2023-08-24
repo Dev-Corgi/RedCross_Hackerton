@@ -71,7 +71,7 @@ function Edit() {
         <div className="selectionframe">
           <div className="selection">
             { navArray.map((e, i)=> 
-                <SelectionBtn index={i} title={e} selection={selection} setSelection={setSelection} buttonController={buttonController} />
+                <SelectionBtn key = {i} index={i} title={e} selection={selection} setSelection={setSelection} buttonController={buttonController} />
             )}
           </div>
           {buttonController != null && (
