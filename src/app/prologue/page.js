@@ -33,18 +33,11 @@ const Chapters = () => {
 
   let chapters = [
     {
-      index: 4,
-      title: '사랑을 찾아서',
-      content1: '서울에서의 힘들었던 생활이 지나고, 어르신께도 사랑이 찾아왔습니다, 함께 들어보세요',
-      content2: '“그해 봄은, 갑자기 찾아왔어요”',
-      imgSrc: "/background4.jpg"
-    },
-    {
-      index: 3,
-      title: '서울로, 상경',
-      content1: '어르신의 고향, 반포동으로 떠나 어르신의 어린시절을 같이 보내보세요',
-      content2: '드릴 인사말이 있습니다.',
-      imgSrc: "/background3.jpg"
+      index: 1,
+      title: '프롤로그',
+      content1: '임점례 어르신의 여정을 함께하기로 한것에 감사드립니다. 임점례 어르신이 당신께 드릴 인사말이 있습니다.',
+      content2: '“안녕하세요, 임점례 입니다.”',
+      imgSrc: "/background1.jpeg"
     },
     {
       index: 2,
@@ -54,11 +47,18 @@ const Chapters = () => {
       imgSrc: "/background2.jpg"
     },
     {
-      index: 1,
-      title: '프롤로그',
-      content1: '임점례 어르신의 여정을 함께하기로 한것에 감사드립니다. 임점례 어르신이 당신께 드릴 인사말이 있습니다.',
-      content2: '“안녕하세요, 임점례 입니다.”',
-      imgSrc: "/background1.jpeg"
+      index: 3,
+      title: '서울로, 상경',
+      content1: '어르신의 고향, 반포동으로 떠나 어르신의 어린시절을 같이 보내보세요',
+      content2: '드릴 인사말이 있습니다.',
+      imgSrc: "/background3.jpg"
+    },
+    {
+      index: 4,
+      title: '사랑을 찾아서',
+      content1: '서울에서의 힘들었던 생활이 지나고, 어르신께도 사랑이 찾아왔습니다, 함께 들어보세요',
+      content2: '“그해 봄은, 갑자기 찾아왔어요”',
+      imgSrc: "/background4.jpg"
     }
   ]
 
@@ -70,7 +70,7 @@ const Chapters = () => {
           {/* BackgroundPic */}
           <div>
             {
-              chapters.map((e, i) =>
+              [...chapters].reverse().map((e, i) =>
                 <ChapterBackground index={e.index} imgSrc={e.imgSrc} scrollGuage={scrollGuage} />
               )
             }
@@ -110,7 +110,7 @@ const Chapters = () => {
               },]}
           >
             {
-              chapters.reverse().map((e, i)=>
+              chapters.map((e, i)=>
                 <ChapterContent index={e.index} scrollGuage={scrollGuage} title={e.title} content1={e.content1} content2={e.content2} />
               )
             }
