@@ -11,6 +11,7 @@ const Chapters = () => {
   const [scrollController,setScrollController] = useState(null)
   const [scrollGuage,setScrollGuage] = useState(null)
   const [index, setIndex] = useState(0);
+  
 
  useEffect(() => {
 

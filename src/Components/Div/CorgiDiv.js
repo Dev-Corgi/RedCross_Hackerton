@@ -51,6 +51,8 @@ export default function CorgiDiv(props) {
         className={props.classname}
         animate={Object.keys(valuelist).length === 0 ? {} : valuelist}
         transition={Object.keys(transitionlist).length === 0 ? {} : transitionlist}
+        ref ={props.Ref}
+        onClick = {props.onclick}
       >
         {props.children}
       </motion.div>
