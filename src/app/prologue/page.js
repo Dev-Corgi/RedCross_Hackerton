@@ -175,14 +175,14 @@ function ChapterContent({index, scrollGuage, title, content1, content2}) {
                 },
               ]}
             >
-              <b className="absolute top-[226px] tracking-[-0.02em] leading-[20px] flex text-center w-[511px] h-10">
-                <span className="[line-break:anywhere] w-full">
+              <b className="absolute top-[226px] tracking-[-0.02em] leading-[20px] flex text-center w-[500px] h-10">
+                <span className="[line-break:anywhere] w-full ">
                   <p className="m-0">
                     {content1}
                   </p>
                 </span>
               </b>
-              <b className="absolute top-[189px] tracking-[-0.02em] flex text-center justify-center w-[511px] h-[15px]">
+              <b className="absolute top-[189px] tracking-[-0.02em] flex text-center justify-center w-[500px] h-[15px]">
                 {content2}
               </b>
               <div className="absolute top-[21px]  text-56xl tracking-[-0.02em] font-medium font-pretendard flex items-center justify-center w-[511px] h-[90px]">
