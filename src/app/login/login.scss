@@ -3,34 +3,44 @@
     background-image: url('/login-bcg.jpeg');
     background-size: cover;
     width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
 
     .logo-set {
         color: white;
         display: flex;
         align-items: center;
         gap: 13px;
-        position: absolute;
-        top: 40px;
-        left: 35px;
     }
 
     .panel {
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 34px;
-        position: absolute;
-        top: 10%;
-        left: 48%;
-        width: 45%;
-        height: 82%;
         color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding:2% 5%;
+        padding:5% 5%;
+        width:640px;
+        margin: 0 5% 0 50%;
+
+        @media (max-width: 1342px) {
+            margin:0 5% 0 45%;
+        }
+
+        @media (max-width: 1245px) {
+            margin: 0 5% 0 40%;
+        }
+
+        @media (max-width: 1125px) {
+            margin: 0 5% 0 35%;
+        }
+
+        @media (max-width: 1040px) {
+            margin: 35px auto;
+        }
 
         input {
             color: white;
