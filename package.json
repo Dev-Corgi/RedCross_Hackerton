@@ -8,12 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "framer-motion": "^10.16.0",
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-native-gesture-handler": "^2.12.1",
+    "react-navigation": "^4.4.4",
+    "react-router-dom": "^6.15.0",
+    "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.65.1"
   },
   "devDependencies": {

@@ -1,11 +1,13 @@
+
 .prologue {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-image: url('/chapter-bcg.jpeg');
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
     @mixin rect($length) {
         border: 1px solid rgba(#fff, 0.3);
@@ -39,12 +41,6 @@
         align-items: center;
         top:0;
         width: 550px;
-
-        p{
-            font-family: 'boutiqueGothic';
-            font-size: 16px;
-            font-weight: 600;
-        }
     }
 
 

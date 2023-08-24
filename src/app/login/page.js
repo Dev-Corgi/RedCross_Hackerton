@@ -9,10 +9,10 @@ function Login() {
         <div className='login'>
             <div className='logo-set'>
                 <Image src="/logo.png" alt='logo' width={'41'} height={'45'} />
-                <h1 className='text-[27px] font-semibold tracking-wide'>MESSENGER</h1>
+                <h1 className='text-[27px] font-["pretendardSemiBold"] tracking-wide'>MESSENGER</h1>
             </div>
             <div className="panel">
-                <h1 className='text-left text-3xl font-semibold tracking-wide'>당신의 글로 세상을 밝게<br />비춰주세요</h1>
+                <h1 className='text-left text-[30px] font-["pretendardSemiBold"] tracking-[4] leading-[36px]'>당신의 글로 세상을 밝게<br />비춰주세요</h1>
                 <input className='mt-[70px]' placeholder='이메일 주소' />
                 <input className="mt-[30px]" placeholder='비밀번호' />
                 <div className='issue'>
