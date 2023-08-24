@@ -23,7 +23,20 @@ function Edit() {
     let audioRef = useRef(null);
     useEffect(() => {
 
-    }, [])
+        let keyboardHandler = (event) => {
+            //왼쪽 방향키
+            if(event.keyCode === 37) {      }
+        }
+
+        if(selection[1] === 'selected'){
+          document.getElementById('left').addEventListener('keypress', keyboardHandler);
+          
+        }
+
+        return (
+            document.getElementById('left').removeEventListener('keypress', keyboardHandler)
+        )
+    }, [selection[1]])
 
     return (
         <div className="edit">
