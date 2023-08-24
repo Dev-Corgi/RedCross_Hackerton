@@ -9,20 +9,12 @@ function Video() {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
-  const buttonController = new ButtonController(500);
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        buttonController.handleButton(0);
-      } else {
-        videoRef.current.play();
-        buttonController.handleButton(1);
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+  let [buttonController, setButtonController] = useState(null);
+
+  useEffect(() => {
+    setButtonController(new ButtonController(500));
+  }, [])
 
   return (
 
@@ -36,7 +28,9 @@ function Video() {
         ref={videoRef}
       />
 
-<CorgiDiv isloading classname="absolute h-[100vh] w-[100vw] bg-black [backdrop-filter:blur(10px)] bg-opacity-[0.4]"
+      {
+        buttonController != null &&
+        <CorgiDiv isloading classname="absolute h-[100vh] w-[100vw] bg-black [backdrop-filter:blur(10px)] bg-opacity-[0.4]"
           motions={[
             {
               input: buttonController,
@@ -53,7 +47,18 @@ function Video() {
               },
             },
           ]}
-          onclick={togglePlay}
+          // onclick={() => {
+          //   if (videoRef.current) {
+          //     if (isPlaying) {
+          //       videoRef.current.pause();
+          //       buttonController.handleButton(0);
+          //     } else {
+          //       videoRef.current.play();
+          //       buttonController.handleButton(1);
+          //     }
+          //     setIsPlaying(!isPlaying);
+          //   }
+          // }}
         >
           <div className="absolute top-[calc(50%_-_86px)] left-[calc(50%_-_190px)] w-[381px] h-[231px]">
             <b className="absolute top-[calc(50%_-_115.5px)] left-[calc(50%_-_190.5px)] leading-[90px] text-left text-[110px] text-white font-['pretendardBold']">
@@ -67,6 +72,20 @@ function Video() {
                 className="h-full w-full"
                 alt=""
                 src="/videoplaybutton.png"
+                onClick={()=>{
+                  if (videoRef.current) {
+                    if (isPlaying) {
+                      videoRef.current.pause();
+                      buttonController.handleButton(0);
+                    } else {
+                      videoRef.current.play();
+                      buttonController.handleButton(1);
+                    }
+                    setIsPlaying(!isPlaying);}
+                    setTimeout(()=>{
+                      setButtonController(null);
+                    }, 500);
+                  }}
               />
             </button>
 
@@ -79,6 +98,7 @@ function Video() {
           </div>
         </CorgiDiv>
 
+      }
 
       <Link href="/prologue" >
         <img

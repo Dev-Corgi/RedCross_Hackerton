@@ -13,8 +13,6 @@ const Chapters = () => {
   const [index, setIndex] = useState(0);
 
  useEffect(() => {
-
-
   const handleIndex = (value) =>{
     setIndex(value);
   };
