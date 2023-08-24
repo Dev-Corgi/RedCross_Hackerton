@@ -5,6 +5,7 @@ import React, { useRef, useState, useEffect } from "react";
 import ButtonController from "@/Controller/ButtonController";
 import Link from "next/link";
 import Loading from "../loading";
+import { useRouter } from "next/navigation";
 
 function Video() {
 
@@ -19,6 +20,8 @@ function Video() {
     setIsLoading(false);
     setButtonController(new ButtonController(500));
   }, [])
+
+  let router = useRouter();
 
   return (
     <>
@@ -105,13 +108,14 @@ function Video() {
 
       }
 
-      <Link href="/prologue" >
         <img
           className="absolute top-[32px] right-[41px] w-10 h-10 object-cover"
           alt=""
           src="/videoclosebutton.png"
+          onClick={()=>{
+            router.push('/prologue')
+          }}
         />
-      </Link>
 
     </div>
     }</>

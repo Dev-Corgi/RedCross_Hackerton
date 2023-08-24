@@ -4,6 +4,7 @@ import Link from "next/link";
 
 function Intro() {
 
+
   return (
     <div className="relative w-[100vw] h-[100vh] overflow-hidden text-left text-lg text-white font-['pretendardSemiBold']">
       <img
@@ -15,17 +16,17 @@ function Intro() {
       <div className="absolute [background:linear-gradient(90deg,_rgba(0,_0,_0,_0.8),_rgba(0,_0,_0,_0))] w-[100vw] h-[100vh] overflow-hidden" />
 
       {/* logo set */}
-      <div className="absolute top-[64px] left-[129px] text-8xl tracking-[0.02em] font-semibold">
-        MESSENGER
-      </div>
+      <div className="absolute top-[56px] left-[75px] flex gap-[15px] justify-start align-center">
       <img
-        className="absolute top-[56px] left-[75px] w-[41px] h-[45px]"
+        className="w-[41px] h-[41px]"
         alt=""
         src="/logo.png"
       />
+      <div className="text-[30px] tracking-[0.02em] font-semibold">
+        세월록
+      </div>
+      </div>
       {/* logo set */}
-
-
 
       <div className="absolute top-[calc(50%_-_109.5px)] left-[68px] bg-khaki w-[201px] h-4 overflow-hidden" />
       <div className="absolute top-[calc(50%_-_21.5px)] left-[68px] bg-khaki w-[324px] h-4 overflow-hidden" />

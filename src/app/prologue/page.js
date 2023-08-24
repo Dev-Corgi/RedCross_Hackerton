@@ -6,6 +6,8 @@ import OpacityMotion from "@/Motion/OpacityMotion";
 import GuageController from "@/Controller/GuageController";
 import React, { useState, useEffect } from "react";
 import Loading from "../loading";
+import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 const Chapters = () => {
 
@@ -31,26 +33,51 @@ const Chapters = () => {
   const rhombusPath = "M228.5,28.7 L57.4,228.5 L228.5,428.3 L399.6,228.5 Z";
   const squarePath = "M78.7,28.7 L78.7,428.7 L378.7,428.7 L378.7,28.7 Z";
 
+  // let [chapters, setChapters] = useState([]);
+
+  // useEffect(() => {
+    
+  //   axios.get('https://redcross.run.goorm.site/home/list/SIBA3')
+  //     .then((result) => {
+  //       console.log(result.data);
+  //       let results = result.data.chapters;
+  //       let array = [];
+
+  //       results.forEach((e, i) => {
+  //         array.push({
+  //           index: i + 1,
+  //           title: e.sub.title,
+  //           content2: e.sub.sub1,
+  //           content1: e.sub.sub2,
+  //           imgSrc: `/background${i+1}.jpg`
+  //         });
+  //       });
+  //       setChapters(array);
+  //     }).catch((error) => {
+  //       alert(error);
+  //     })
+  // }, [])
+
   let chapters = [
     {
       index: 1,
       title: '프롤로그',
       content1: '임점례 어르신의 여정을 함께하기로 한것에 감사드립니다. 임점례 어르신이 당신께 드릴 인사말이 있습니다.',
       content2: '“안녕하세요, 임점례 입니다.”',
-      imgSrc: "/background1.jpeg"
+      imgSrc: "/background1.jpg"
     },
     {
       index: 2,
       title: '나의 동네, 원미동',
-      content1: '어르신의 고향, 반포동으로 떠나 어르신의 어린시절을 같이 보내보세요',
-      content2: '드릴 인사말이 있습니다.',
+      content1: '어르신의 고향, 원미동으로 떠나 어르신의 어린시절을 같이 보내보세요',
+      content2: '“눈을 감아도 아직도 그 골목이 선하네요”',
       imgSrc: "/background2.jpg"
     },
     {
       index: 3,
       title: '서울로, 상경',
-      content1: '어르신의 고향, 반포동으로 떠나 어르신의 어린시절을 같이 보내보세요',
-      content2: '드릴 인사말이 있습니다.',
+      content1: '산업화 시대, 우리나라의 격동의 시절, 어르신은 가족을 위해 돈을 벌러 서울로 상경하기로 합니다, 그 시절 이야기를 들어보세요',
+      content2: '“돈을 벌어야 한다, 그때는 그 생각 뿐이었습니다”',
       imgSrc: "/background3.jpg"
     },
     {
@@ -62,6 +89,8 @@ const Chapters = () => {
     }
   ]
 
+  let router = useRouter();
+
 
   return (
     <>
@@ -71,7 +100,7 @@ const Chapters = () => {
           <div>
             {
               [...chapters].reverse().map((e, i) =>
-                <ChapterBackground index={e.index} imgSrc={e.imgSrc} scrollGuage={scrollGuage} />
+                <ChapterBackground key={i} index={e.index} imgSrc={e.imgSrc} scrollGuage={scrollGuage} />
               )
             }
           </div>
@@ -105,13 +134,15 @@ const Chapters = () => {
           <CorgiDiv
             classname="absolute w-[184.028vw] top-[calc(50%_-_80.5px)] left-[32.153vw] flex flex-row items-center justify-start gap-[14.028vw] text-center text-mini font-bookk-myungjo"
             motions={[{
-                input: scrollController,
-                motion: new MovingMotionStep(49.514, 0, "vw", 3, 0,1.5,[0.215, 0.61, 0.355, 1]),
-              },]}
+              input: scrollController,
+              motion: new MovingMotionStep(49.514, 0, "vw", 3, 0, 1.5, [0.215, 0.61, 0.355, 1]),
+            },]}
           >
             {
-              chapters.map((e, i)=>
-                <ChapterContent index={e.index} scrollGuage={scrollGuage} title={e.title} content1={e.content1} content2={e.content2} />
+              chapters.map((e, i) =>{
+                return(<ChapterContent key={i} index={e.index} scrollGuage={scrollGuage} title={e.title} content1={e.content1} content2={e.content2} 
+                  router={router}
+                />)}
               )
             }
           </CorgiDiv>
@@ -154,44 +185,51 @@ function ChapterBackground({ index, imgSrc, scrollGuage }) {
   )
 }
 
-function ChapterContent({index, scrollGuage, title, content1, content2}) {
+function ChapterContent({router, index, scrollGuage, title, content1, content2 }) {
 
   return (
-<CorgiDiv classname="flex flex-1 h-[266px] justify-center"
-              motions={[
-                {
-                  input: scrollGuage,
-                  motion: new OpacityMotion(0.3, 0, 1.5, [0.215, 0.61, 0.355, 1]),
-                  condition: (state, value) => {
-                    return state > 0 && value == index ? true : false;
-                  },
-                },
-                {
-                  input: scrollGuage,
-                  motion: new OpacityMotion(1, 0, 1.5, [0.215, 0.61, 0.355, 1]),
-                  condition: (state, value) => {
-                    return state < 0 && value == index-1 ? true : false;
-                  },
-                },
-              ]}
-            >
-              <b className="absolute top-[226px] tracking-[-0.02em] leading-[20px] flex text-center w-[500px] h-10">
-                <span className="[line-break:anywhere] w-full ">
-                  <p className="m-0">
-                    {content1}
-                  </p>
-                </span>
-              </b>
-              <b className="absolute top-[189px] tracking-[-0.02em] flex text-center justify-center w-[500px] h-[15px]">
-                {content2}
-              </b>
-              <div className="absolute top-[21px]  text-56xl tracking-[-0.02em] font-medium font-pretendard flex items-center justify-center w-[511px] h-[90px]">
-                {title}
-              </div>
-              <div className="absolute top-[0px]  tracking-[-0.02em] font-pretendard flex items-center justify-center w-[137px] h-[18px]">
-                {`제 ${index} 장`}
-              </div>
-            </CorgiDiv>
+    <CorgiDiv classname="flex flex-1 h-[266px] justify-center"
+      motions={[
+        {
+          input: scrollGuage,
+          motion: new OpacityMotion(0.3, 0, 1.5, [0.215, 0.61, 0.355, 1]),
+          condition: (state, value) => {
+            return state > 0 && value == index ? true : false;
+          },
+        },
+        {
+          input: scrollGuage,
+          motion: new OpacityMotion(1, 0, 1.5, [0.215, 0.61, 0.355, 1]),
+          condition: (state, value) => {
+            return state < 0 && value == index - 1 ? true : false;
+          },
+        },
+      ]}
+    >
+      <b className="absolute top-[226px] tracking-[-0.02em] leading-[20px] flex text-center w-[500px] h-10">
+        <span className="[line-break:anywhere] w-full ">
+          <p className="m-0">
+            {content1}
+          </p>
+        </span>
+      </b>
+      <b className="absolute top-[189px] tracking-[-0.02em] flex text-center justify-center w-[500px] h-[15px]">
+        {content2}
+      </b>
+      <div onClick={()=>{ 
+        if(index - 1 === 0){
+          router.push('/video');
+        }
+        else{
+          router.push('/edit/' + (index - 1));
+        }
+      }} className="absolute top-[21px]  text-56xl tracking-[-0.02em] font-medium font-pretendard flex items-center justify-center w-[511px] h-[90px]">
+        {title}
+      </div>
+      <div className="absolute top-[0px]  tracking-[-0.02em] font-pretendard flex items-center justify-center w-[137px] h-[18px]">
+        {`제 ${index} 장`}
+      </div>
+    </CorgiDiv>
   )
 }
 

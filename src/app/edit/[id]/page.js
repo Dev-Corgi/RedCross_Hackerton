@@ -6,6 +6,11 @@ import SmoothScrollBox from "@/Components/SmoothScrollBox";
 import CorgiDiv from "@/Components/Div/CorgiDiv";
 import ButtonController from "@/Controller/ButtonController";
 import MovingMotionAbsolute from "@/Motion/MovingMotionAbsolute";
+import axios from 'axios';
+// import { useRouter } from "next/navigation";
+
+import Link from "next/link";
+
 function Edit() {
   //커서 깜빡깜빡
   let contentRef = useRef(null);
@@ -64,6 +69,28 @@ function Edit() {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  let [userContent, setUserContent] = useState('');
+
+  let [chapter, setChapter] = useState({})
+
+  // useEffect(() => {
+  //   axios.get('https://redcross.run.goorm.site/home/list/SIBA3')
+  //     .then((result) => {
+  //       console.log(result.data);
+  //       setChapter({
+  //         name: result.data.name,
+  //         content: result.data.main,
+  //         title: result.data.sub.title,
+  //         index: 
+  //       })
+
+  //     }).catch((error) => {
+  //       alert(error);
+  //     })
+  // }, [])
+
+  // let router = useRouter();
+
 
   return (
     <div className="edit">
@@ -71,7 +98,7 @@ function Edit() {
         <div className="selectionframe">
           <div className="selection">
             { navArray.map((e, i)=> 
-                <SelectionBtn index={i} title={e} selection={selection} setSelection={setSelection} buttonController={buttonController} />
+                <SelectionBtn key={i} index={i} title={e} selection={selection} setSelection={setSelection} buttonController={buttonController} />
             )}
           </div>
           {buttonController != null && (
@@ -80,42 +107,21 @@ function Edit() {
               motions={[
                 {
                   input: buttonController,
-                  motion: new MovingMotionAbsolute(
-                    0,
-                    0,
-                    "px",
-                    0,
-                    0.5,
-                    [0.215, 0.61, 0.355, 1]
-                  ),
+                  motion: new MovingMotionAbsolute(0, 0, "px", 0, 0.5, [0.215, 0.61, 0.355, 1] ),
                   condition: (state, value) => {
                     return value == 0 ? true : false;
                   },
                 },
                 {
                   input: buttonController,
-                  motion: new MovingMotionAbsolute(
-                    68 * 1,
-                    0,
-                    "px",
-                    0,
-                    0.5,
-                    [0.215, 0.61, 0.355, 1]
-                  ),
+                  motion: new MovingMotionAbsolute(68 * 1,0,"px",0,0.5,[0.215, 0.61, 0.355, 1]),
                   condition: (state, value) => {
                     return value == 1 ? true : false;
                   },
                 },
                 {
                   input: buttonController,
-                  motion: new MovingMotionAbsolute(
-                    68 * 2,
-                    0,
-                    "px",
-                    0,
-                    0.5,
-                    [0.215, 0.61, 0.355, 1]
-                  ),
+                  motion: new MovingMotionAbsolute(68 * 2, 0, "px", 0, 0.5, [0.215, 0.61, 0.355, 1]),
                   condition: (state, value) => {
                     return value == 2 ? true : false;
                   },
@@ -198,11 +204,30 @@ function Edit() {
       <div className="right">
         <div className="panel">
           <div className="header">
+            <button className="fixed top-[50px] right-[50px]" onClick={()=>{
+             axios.get('https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?_callback=jQuery112404457138148449815_1692883993112&q='+ userContent + '&where=nexearch&color_blindness=0&_=1692883993113')
+             .then((result)=>{
+                let tmp = result.data.toString();
+                tmp = tmp.substring(42, tmp.length-2);
+                let temp = JSON.parse(tmp);
+                // console.log(temp.message.result.notag_html);
+                setUserContent(temp.message.result.notag_html);
+             }).catch((error)=>{
+              alert(error.message)
+             })
+          }}>맞춤법 검사</button>
+          <Link href="/post" >
+          <button 
+          // onClick={()=>{ router.push('/post') }} 
+          className="fixed top-[80px] right-[50px]">
+            저장하기
+          </button>
+          </Link>
             <p>제 2 장</p>
-            <h1>나의 동네, 반포동</h1>
+            <h1>나의 동네, 반포동</h1>  
             <p className="pl-[42px]">-임점례</p>
           </div>
-          <textarea ref={contentRef} />
+          <textarea ref={contentRef} value={userContent} onChange={(e)=>{setUserContent(e.target.value);}}/>
         </div>
       </div>
     </div>

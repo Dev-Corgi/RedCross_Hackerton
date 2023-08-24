@@ -9,7 +9,7 @@ function Login() {
         <div className='login'>
             <div className='logo-set'>
                 <Image src="/logo.png" alt='logo' width={'41'} height={'45'} />
-                <h1 className='text-[27px] font-["pretendardSemiBold"] tracking-wide'>MESSENGER</h1>
+                <h1 className='text-[35px] font-["pretendardSemiBold"] tracking-wide'>세월록</h1>
             </div>
             <div className="panel">
                 <h1 className='text-left text-[30px] font-["pretendardSemiBold"] tracking-[4] leading-[36px]'>당신의 글로 세상을 밝게<br />비춰주세요</h1>
@@ -26,7 +26,7 @@ function Login() {
                 <div className='social-login'>
                     <Image src="/images/instaButton.png" alt="인스타그램" width={'90'} height={'90'}/>
                     <Image src="/images/googleButton.png" alt="구글" width={'90'} height={'90'}/>
-                    <Image src="/images/kakaoButton.png" alt="카카오" width={'90'} height={'90'}/>
+                    <Link href="https://kauth.kakao.com/oauth/authorize?client_id=5b202cd09928fdae77dfff45aaabb15f&response_type=code&redirect_uri=https://redcross.run.goorm.site/callback" ><Image src="/images/kakaoButton.png" alt="카카오" width={'90'} height={'90'}/></Link>
                 </div>
             </div>
         </div>
