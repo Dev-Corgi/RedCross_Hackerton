@@ -33,61 +33,61 @@ const Chapters = () => {
   const rhombusPath = "M228.5,28.7 L57.4,228.5 L228.5,428.3 L399.6,228.5 Z";
   const squarePath = "M78.7,28.7 L78.7,428.7 L378.7,428.7 L378.7,28.7 Z";
 
-  // let [chapters, setChapters] = useState([]);
+  let [chapters, setChapters] = useState([]);
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   axios.get('https://redcross.run.goorm.site/home/list/SIBA3')
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       let results = result.data.chapters;
-  //       let array = [];
+    axios.get('https://redcross.run.goorm.site/home/list/SIBA')
+      .then((result) => {
+        console.log(result.data);
+        let results = result.data.chapters;
+        let array = [];
 
-  //       results.forEach((e, i) => {
-  //         array.push({
-  //           index: i + 1,
-  //           title: e.sub.title,
-  //           content2: e.sub.sub1,
-  //           content1: e.sub.sub2,
-  //           imgSrc: `/background${i+1}.jpg`
-  //         });
-  //       });
-  //       setChapters(array);
-  //     }).catch((error) => {
-  //       alert(error);
-  //     })
-  // }, [])
+        results.forEach((e, i) => {
+          array.push({
+            index: i + 1,
+            title: e.sub.title,
+            content2: e.sub.sub1,
+            content1: e.sub.sub2,
+            imgSrc: `/background${i+1}.jpg`
+          });
+        });
+        setChapters(array);
+      }).catch((error) => {
+        alert(error);
+      })
+  }, [])
 
-  let chapters = [
-    {
-      index: 1,
-      title: '프롤로그',
-      content1: '임점례 어르신의 여정을 함께하기로 한것에 감사드립니다. 임점례 어르신이 당신께 드릴 인사말이 있습니다.',
-      content2: '“안녕하세요, 임점례 입니다.”',
-      imgSrc: "/background1.jpg"
-    },
-    {
-      index: 2,
-      title: '나의 동네, 원미동',
-      content1: '어르신의 고향, 원미동으로 떠나 어르신의 어린시절을 같이 보내보세요',
-      content2: '“눈을 감아도 아직도 그 골목이 선하네요”',
-      imgSrc: "/background2.jpg"
-    },
-    {
-      index: 3,
-      title: '서울로, 상경',
-      content1: '산업화 시대, 우리나라의 격동의 시절, 어르신은 가족을 위해 돈을 벌러 서울로 상경하기로 합니다, 그 시절 이야기를 들어보세요',
-      content2: '“돈을 벌어야 한다, 그때는 그 생각 뿐이었습니다”',
-      imgSrc: "/background3.jpg"
-    },
-    {
-      index: 4,
-      title: '사랑을 찾아서',
-      content1: '서울에서의 힘들었던 생활이 지나고, 어르신께도 사랑이 찾아왔습니다, 함께 들어보세요',
-      content2: '“그해 봄은, 갑자기 찾아왔어요”',
-      imgSrc: "/background4.jpg"
-    }
-  ]
+  // let chapters = [
+  //   {
+  //     index: 1,
+  //     title: '프롤로그',
+  //     content1: '임점례 어르신의 여정을 함께하기로 한것에 감사드립니다. 임점례 어르신이 당신께 드릴 인사말이 있습니다.',
+  //     content2: '“안녕하세요, 임점례 입니다.”',
+  //     imgSrc: "/background1.jpg"
+  //   },
+  //   {
+  //     index: 2,
+  //     title: '나의 동네, 원미동',
+  //     content1: '어르신의 고향, 원미동으로 떠나 어르신의 어린시절을 같이 보내보세요',
+  //     content2: '“눈을 감아도 아직도 그 골목이 선하네요”',
+  //     imgSrc: "/background2.jpg"
+  //   },
+  //   {
+  //     index: 3,
+  //     title: '서울로, 상경',
+  //     content1: '산업화 시대, 우리나라의 격동의 시절, 어르신은 가족을 위해 돈을 벌러 서울로 상경하기로 합니다, 그 시절 이야기를 들어보세요',
+  //     content2: '“돈을 벌어야 한다, 그때는 그 생각 뿐이었습니다”',
+  //     imgSrc: "/background3.jpg"
+  //   },
+  //   {
+  //     index: 4,
+  //     title: '사랑을 찾아서',
+  //     content1: '서울에서의 힘들었던 생활이 지나고, 어르신께도 사랑이 찾아왔습니다, 함께 들어보세요',
+  //     content2: '“그해 봄은, 갑자기 찾아왔어요”',
+  //     imgSrc: "/background4.jpg"
+  //   }
+  // ]
 
   let router = useRouter();
 

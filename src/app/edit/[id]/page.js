@@ -7,7 +7,8 @@ import CorgiDiv from "@/Components/Div/CorgiDiv";
 import ButtonController from "@/Controller/ButtonController";
 import MovingMotionAbsolute from "@/Motion/MovingMotionAbsolute";
 import axios from 'axios';
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 import Link from "next/link";
 
@@ -71,23 +72,26 @@ function Edit() {
 
   let [userContent, setUserContent] = useState('');
 
-  let [chapter, setChapter] = useState({})
+  let [chapter, setChapter] = useState({});
 
-  // useEffect(() => {
-  //   axios.get('https://redcross.run.goorm.site/home/list/SIBA3')
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       setChapter({
-  //         name: result.data.name,
-  //         content: result.data.main,
-  //         title: result.data.sub.title,
-  //         index: 
-  //       })
+  const { id } = useParams();
 
-  //     }).catch((error) => {
-  //       alert(error);
-  //     })
-  // }, [])
+  let router = useRouter();
+
+  useEffect(() => {
+    axios.get('https://redcross.run.goorm.site/home/list/SIBA/' + id)
+      .then((result) => {
+        console.log(result.data);
+        setChapter({
+          name:result.data.name,
+          title: result.data.sub,
+          writer: result.data.writer
+        })
+        setUserContent(result.data.main)
+      }).catch((error) => {
+        alert(error);
+      })
+  }, [])
 
   // let router = useRouter();
 
@@ -218,14 +222,24 @@ function Edit() {
           }}>맞춤법 검사</button>
           <Link href="/post" >
           <button 
-          // onClick={()=>{ router.push('/post') }} 
+          onClick={()=>{
+            axios.post('https://redcross.run.goorm.site/home/list/SIBA/' + id, {
+              content: userContent
+          })
+          .then((result)=>{
+            console.log(result);
+            router.push('/post');
+          })
+          .catch((error)=>{
+            alert(error);
+          })}}
           className="fixed top-[80px] right-[50px]">
             저장하기
           </button>
           </Link>
-            <p>제 2 장</p>
-            <h1>나의 동네, 반포동</h1>  
-            <p className="pl-[42px]">-임점례</p>
+            <p>{`제 ${Number(id)+1} 장`}</p>
+            <h1>{chapter.title}</h1>  
+            <p className="pl-[42px]">{`-${chapter.name}`}</p>
           </div>
           <textarea ref={contentRef} value={userContent} onChange={(e)=>{setUserContent(e.target.value);}}/>
         </div>
